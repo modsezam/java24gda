@@ -21,6 +21,10 @@ public class ComputerPrice {
         System.out.println("Price for computer and monitor [gross with 23% VAT] = " + ((priceComputer + priceMonitor)*1.23));
         System.out.println("Price for computer and monitor [gross with 23% VAT] = " + (Math.round(((priceComputer + priceMonitor)*1.23)*100.))/100.);
 
+    }
+
+    public void getComputerPrice(){
 
     }
+
 }
