@@ -1,3 +1,17 @@
+package sda.datatypes;
+
+/*
+lesson 1
+date 23.02.2019
+content of task (in Polish):
+
+8. W osobnej klasie ComputerPrice, w metodzie main() napisz program obliczający cenę komputera na podstawie jego
+części. Program ma wypisać na konsolę osobno cenę samego komputera: płyta główna, procesor, pamięć RAM,
+dysk twardy i osobno cenę komputera i monitora. W cenie należy uwzględnić podatek VAT = 23%.
+
+ */
+
+
 public class ComputerPrice {
     public static void main(String[] args) {
         System.out.println(">>> Task 8 - #datatypes");
@@ -23,8 +37,8 @@ public class ComputerPrice {
 
     }
 
-    public void getComputerPrice(){
-
-    }
+//    public void getComputerPrice(){
+//
+//    }
 
 }

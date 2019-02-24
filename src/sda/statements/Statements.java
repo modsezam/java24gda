@@ -1,32 +1,66 @@
-import java.util.Scanner;
+package sda.statements;
+
+/*
+
+lesson 1
+date 23.02.2019
+content of task (in Polish):
+
+1. Napisz program, który wypisze na ekran konsoli, czy dana liczba całkowita znajduje się w przedziale 1-10, 11-100,
+101-1000, 1001-10000, czy też może jest mniejsza od 0 lub większa od 10000. Parametrem wejściowym niech będzie
+zmienna zainicjowana na początku programu.
+2. Napisz program, który wypisze na ekran konsoli, słowo oznaczające ocenę dla podanej cyfry. Np. dla 1 -
+"niedostateczny", 2 - "mierny" itp. Obsłuż przypadek gdy cyfra jest poza skalą ocen.
+3. Napisz program, który wypisze na ekran konsoli, cyfrę arabską dla podanej liczby rzymskiej (od 1 do 9). Czyli np. dla 'I'
+wypisze 1, dla 'V' 5 itp. Obsłuż przypadek gdy podana liczba rzymska jest nieprawidłowa.
+4. Napisz program, który wypisze na ekran konsoli czy podany kod Unicode jest liczbą (0-9), małą literą (a-z) czy też dużą
+literą (A-Z). Kody każdej z grup znaków następują po sobie więc wystarczy znaleźć kod np. dla litery 'a' i 'z' i sprawdzić
+czy podany kod zawiera się w tym przedziale.
+5. Napisz program, który dla podanej liczby wypisze na ekran konsoli dzień tygodnia (dla 1 - "poniedziałek", 2 - "wtorek"
+itp). Dodatkowo wyświetl ile dni zostało do weekendu, dla poniedziałku - 5 dni, wtorku - 4 itp.
 
 
-public class Statements2 {
+ */
+public class Statements {
 
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
 
-        System.out.println(">>> Task 6 - #statements");
-        System.out.println("Give an integer (from task1):");
-        int a = scanner.nextInt();
+        System.out.println(">>> Task 1 - #statements");
+
+        int a = 30;
         checkNumber1(a);
+        //checkNumber2(a);
 
-        System.out.println("\nGive a rating (intiger)(from task2):");
-        int rating = scanner.nextInt();
+        int b = 200;
+        //checkNumber1(b);
+        checkNumber2(b);
+
+        checkNumber1(10_001);
+        //checkNumber2(10_001);
+        //checkNumber1(9_999);
+        checkNumber2(9_999);
+
+        System.out.println("\n>>> Task 2");
+        int rating = 3;
         System.out.println("Rating " + rating + " in Polish is \"" + ratingOnString(rating) + "\"");
 
-        System.out.println("\nGive a Arabic digit (intiger)(from task3):");
-        int digit = scanner.nextInt();
+        System.out.println("\n>>> Task 3");
+        int digit = 9;
+        System.out.println(digit + " in Arabic is " + digitInArabic(digit));
+        digit = 11;
         System.out.println(digit + " in Arabic is " + digitInArabic(digit));
 
-        System.out.println("\nGive a char from range (0-9), (A-Z), (a-z) (from task4):");
-        String unicodeSymbolString = scanner.next();
-        char unicodeSymbol = unicodeSymbolString.charAt(0);
-        System.out.println(isUnicodeSymbol(unicodeSymbol));
 
-        System.out.println("\nGive a day of the week (intiger) (from task5):");
-        int day = scanner.nextInt();
-        System.out.println(dayOfTheWeek(day));
+        System.out.println("\n>>> Task 4");
+        char unicodeSymbol = 'ś';
+        System.out.println(isUnicodeSymbol(unicodeSymbol));
+        System.out.println(isUnicodeSymbol('9'));
+        System.out.println(isUnicodeSymbol('a'));
+        System.out.println(isUnicodeSymbol('D'));
+
+        System.out.println("\n>>> Task 5");
+        System.out.println(dayOfTheWeek(5));
+        System.out.println(dayOfTheWeek(9));
 
     }
 

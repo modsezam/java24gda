@@ -1,3 +1,18 @@
+package sda.datatypes;
+
+/*
+lesson 1
+date 23.02.2019
+content of task (in Polish):
+
+7. W osobnej klasie FahrenheitConverter, w metodzie main() napisz program przekształcający dane o temperaturze
+podanej w skali Fahrenheit do skali Celsjusza. Dane wejściowe (temperatura w skali Fahrenheit) podać w inicjacji
+odpowiedniej zmiennej w programie. Sprawdź czy program poprawnie oblicza temperatury dla danych:
+32 °F = 0 °C; 212 °F = 100 °C
+
+ */
+
+
 public class FahrenheitConverter {
 
     public static void main(String[] args) {

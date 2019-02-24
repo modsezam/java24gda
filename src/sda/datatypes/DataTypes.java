@@ -1,3 +1,23 @@
+package sda.datatypes;
+
+/*
+lesson 1
+date 23.02.2019
+content of task (in Polish):
+
+1. Napisz program, który utworzy dwie zmienne, a następnie wypisze na ekran ich sumę, różnicę i iloczyn.
+2. Napisz program, który tworzy jedną zmienną, a następnie wypisze na ekran jej wartość podniesioną do 3 potęgi.
+3. Napisz program, który utworzy jedną zmienną, a następnie wypisze na ekran tekst: true jeżeli wartość tej zmiennej
+jest liczbą parzystą lub false w przeciwnym przypadku.
+4. Napisz program, który utworzy jedną zmienną, a następnie wypisze na ekran tekst: true jeżeli wartość tej zmiennej
+jest podzielna przez 3 i jednocześnie przez lub false w przeciwnym przypadku.
+5. Wyświetl na ekranie pięć pierwszych liter alfabetu: łacińskiego (zaczyna się od kodu: 65), hebrajskiego (zaczyna się
+od: 1488) i tybetańskiego (zaczyna się od: 3840)
+6. Wyświetl na ekranie w jednej linijce znaki (char) dla kodów: 74, 65, 86, 65, 32, 8658, 32, 9786
+
+ */
+
+
 public class DataTypes {
     public static void main(String[] args) {
         int a = 1;
