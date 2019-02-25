@@ -49,31 +49,56 @@ public class Triangle {
     }
 
     public boolean isRectangular(){
+        int maxSideTriangle;
 
-        int temp;
-
+        // check if the variable(side of triangle) is not <= 0
         if (a <= 0 || b <=0 || c<=0){
             return false;
         }
 
-        temp = Math.max(a, b);
-        temp = Math.max(c, temp);
+        //check max side of triangle
+        maxSideTriangle = Math.max(a, b);
+        maxSideTriangle = Math.max(c, maxSideTriangle);
 
-        if (temp == a){
+        // substitute max variable side of triangle to last variable
+        if (maxSideTriangle == a){
             return equation(c, b, a);
         }
-
-        if (temp == b){
+        if (maxSideTriangle == b){
             return equation(a, c, b);
         }
-        if (temp == c){
+        if (maxSideTriangle == c){
             return equation(a, b, c);
         }
-
         return false;
-
     }
 
+    public boolean isRectangular(int a, int b, int c){
+        int maxSideTriangle;
+
+        // check if the variable(side of triangle) is not <= 0
+        if (a <= 0 || b <=0 || c<=0){
+            return false;
+        }
+
+        //check max side of triangle
+        maxSideTriangle = Math.max(a, b);
+        maxSideTriangle = Math.max(c, maxSideTriangle);
+
+        // substitute max variable side of triangle to last variable
+        if (maxSideTriangle == a){
+            return equation(c, b, a);
+        }
+        if (maxSideTriangle == b){
+            return equation(a, c, b);
+        }
+        if (maxSideTriangle == c){
+            return equation(a, b, c);
+        }
+        return false;
+    }
+
+    // check triangle is rectangular -> return bool
     public boolean equation (int a, int b, int c){
         if ( c == Math.sqrt(a*a + b*b) ){
             return true;

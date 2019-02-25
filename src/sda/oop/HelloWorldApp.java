@@ -22,7 +22,7 @@ content of task (in Polish):
 
  */
 
-public class HelloWorlsApp {
+public class HelloWorldApp {
     public static void main(String[] args) {
 
         Car toyota = new Car("Toyota", "black");

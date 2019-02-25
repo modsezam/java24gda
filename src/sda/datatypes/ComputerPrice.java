@@ -1,44 +1,83 @@
 package sda.datatypes;
 
 /*
-lesson 1
-date 23.02.2019
-content of task (in Polish):
 
-8. W osobnej klasie ComputerPrice, w metodzie main() napisz program obliczający cenę komputera na podstawie jego
-części. Program ma wypisać na konsolę osobno cenę samego komputera: płyta główna, procesor, pamięć RAM,
-dysk twardy i osobno cenę komputera i monitora. W cenie należy uwzględnić podatek VAT = 23%.
+lesson 2
+date 24.02.2019
+content of task (in Polish):
+2. Przenieś kod zapisany w metodach main() klas FahrenheitConverter i ComputerPrice do osobnych metod, np.:
+convertToCelsius(double temperatureInFahrenheit), getComputerPrice()
+4. W klasie ComputerPrice wydziel metody getComputerPrice(), getMonitorPrice() i getComputerAndMonitorPrice(),
+ostatnia z metod ma korzystać z dwóch pierwszych. Zmienną VAT ustaw jako pole klasy ComputerPrice.
 
  */
 
-
 public class ComputerPrice {
-    public static void main(String[] args) {
-        System.out.println(">>> Task 8 - #datatypes");
-        double priceMainBord = 234.34;
-        double priceProcessor = 230.47;
-        double priceRam = 123.87;
-        double priceHardDisk = 239.98;
-        double priceComputer;
-        double priceMonitor = 309.89;
 
-        System.out.println("price for main board = " + priceMainBord);
-        System.out.println("price for processor = " + priceProcessor);
-        System.out.println("price for ram = " + priceRam);
-        System.out.println("price for harddisk = " + priceHardDisk);
+    private double priceMainBord;
+    private double priceProcessor;
+    private double priceRam;
+    private double priceHardDisk;
 
-        priceComputer = priceMainBord + priceProcessor + priceRam + priceHardDisk;
-        System.out.println("\nPrice for computer [net] = " + priceComputer);
-        System.out.println("Price for computer [net] = " + (Math.round((priceComputer)*100.))/100.);
-        System.out.println("Price for computer and monitor [net] = " + (priceComputer + priceMonitor));
-        System.out.println("Price for computer and monitor [net] = " + (Math.round((priceComputer + priceMonitor)*100.))/100. );
-        System.out.println("Price for computer and monitor [gross with 23% VAT] = " + ((priceComputer + priceMonitor)*1.23));
-        System.out.println("Price for computer and monitor [gross with 23% VAT] = " + (Math.round(((priceComputer + priceMonitor)*1.23)*100.))/100.);
+    private double priceMonitor;
+    private double priceMonitorVat;
+    private double ComputerPrice;
+    private double ComputerPriceVat;
 
+    public double getPriceMainBord() {
+        return priceMainBord;
     }
 
-//    public void getComputerPrice(){
-//
-//    }
+    public void setPriceMainBord(double priceMainBord) {
+        this.priceMainBord = priceMainBord;
+    }
+
+    public double getPriceProcessor() {
+        return priceProcessor;
+    }
+
+    public void setPriceProcessor(double priceProcessor) {
+        this.priceProcessor = priceProcessor;
+    }
+
+    public double getPriceRam() {
+        return priceRam;
+    }
+
+    public void setPriceRam(double priceRam) {
+        this.priceRam = priceRam;
+    }
+
+    public double getPriceHardDisk() {
+        return priceHardDisk;
+    }
+
+    public void setPriceHardDisk(double priceHardDisk) {
+        this.priceHardDisk = priceHardDisk;
+    }
+
+    public double getPriceMonitor() {
+        return priceMonitor;
+    }
+
+    public void setPriceMonitor(double priceMonitor) {
+        this.priceMonitor = priceMonitor;
+    }
+
+    public double getComputerPrice() {
+        return priceMainBord + priceProcessor + priceRam + priceHardDisk;
+    }
+
+    public double getComputerAndMonitorPrice(){
+        return (getComputerPrice() + getPriceMonitor());
+    }
+
+    public double getComputerPriceVat(){
+        return (getComputerPrice()*0.23);
+    }
+
+    public double getPriceMonitorVat(){
+        return (getPriceMonitor()*0.23);
+    }
 
 }

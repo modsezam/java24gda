@@ -16,18 +16,29 @@ zbudować trójkąt prostokątny. Wzór który może pomóc: c2 = a2 + b2
 public class TriangleApp {
     public static void main(String[] args) {
 
-        Triangle trialangle1 = new Triangle(0, 2, 2);
+        Triangle triangle = new Triangle(0, 2, 4);
 
 
-        System.out.println("sda.oop.Triangle a = " + trialangle1.getA() + ", b = " + trialangle1.getB() + ", c = " + trialangle1.getC() + " is rectangular triangle:");
-        System.out.println(trialangle1.isRectangular());
+        System.out.print("sda.oop.Triangle:\na = " + triangle.getA() + ", b = " + triangle.getB() + ", c = " + triangle.getC() + " is rectangular triangle: ");
+        System.out.println(triangle.isRectangular());
 
-        trialangle1.setA(3);
-        trialangle1.setB(4);
-        trialangle1.setC(5);
+        triangle.setA(3);
+        triangle.setB(4);
+        triangle.setC(5);
+        System.out.print("a = " + triangle.getA() + ", b = " + triangle.getB() + ", c = " + triangle.getC() + " is rectangular triangle: ");
+        System.out.println(triangle.isRectangular());
 
-        System.out.println("sda.oop.Triangle a = " + trialangle1.getA() + ", b = " + trialangle1.getB() + ", c = " + trialangle1.getC() + " is rectangular triangle:");
-        System.out.println(trialangle1.isRectangular());
+        int a = 4;
+        int b = 5;
+        int c = 3;
+        System.out.print("a = " + a + ", b = " + b + ", c = " + c + " is rectangular triangle: ");
+        System.out.println(triangle.isRectangular(a, b, c));
+
+        a = 9;
+        b = 4;
+        c = 3;
+        System.out.print("a = " + a + ", b = " + b + ", c = " + c + " is rectangular triangle: ");
+        System.out.println(triangle.isRectangular(a, b, c));
 
     }
 }

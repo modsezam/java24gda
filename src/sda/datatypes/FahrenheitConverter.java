@@ -10,6 +10,14 @@ podanej w skali Fahrenheit do skali Celsjusza. Dane wejściowe (temperatura w sk
 odpowiedniej zmiennej w programie. Sprawdź czy program poprawnie oblicza temperatury dla danych:
 32 °F = 0 °C; 212 °F = 100 °C
 
+lesson 2
+date 24.02.2019
+content of task (in Polish):
+2. Przenieś kod zapisany w metodach main() klas FahrenheitConverter i ComputerPrice do osobnych metod, np.:
+convertToCelsius(double temperatureInFahrenheit), getComputerPrice()
+3. W klasie FahrenheitConverter dodaj metodę, która konwertuje temperatury w drugą stronę (Celsjusz →
+Fahrenheit)
+
  */
 
 
