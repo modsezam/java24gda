@@ -6,9 +6,13 @@ public class TemperatureApp {
 
     public static void main(String[] args) {
 
-        Temperature t = new Temperature(23, "10.12.2019", "12:43");
+        FahrenheitConverter fahrenheitConverter = new FahrenheitConverter();
+        Temperature temp = new Temperature(fahrenheitConverter, 23, "10.12.2019", "12:43");
 
-        System.out.println(t.show());
-        System.out.println(t.showInFahrenheit());
+
+
+        System.out.println(temp.show());
+        System.out.println(temp.showInFahrenheit());
+        //System.out.println(t.fC.celsiusToFahrenheit(34.0));
     }
 }

@@ -20,11 +20,13 @@ public class Temperature {
     private double temperature;
     private String date;
     private String hour;
+    private FahrenheitConverter tFahrenheitConverter;
 
-    FahrenheitConverter fC = new FahrenheitConverter();
+    //konstruktor do
 
 
-    public Temperature(double temperature, String date, String hour) {
+    public Temperature(FahrenheitConverter fahrenheitConverter, double temperature, String date, String hour) {
+        this.tFahrenheitConverter = fahrenheitConverter;
         this.temperature = temperature;
         this.date = date;
         this.hour = hour;
@@ -47,7 +49,8 @@ public class Temperature {
     }
 
     public String showInFahrenheit(){
-        return (date + " " + hour + " - " + fC.celsiusToFahrenheit(temperature) + " °F");
+        return (date + " " + hour + " - " + tFahrenheitConverter.celsiusToFahrenheit(temperature) + " °F");
+
     }
 
 }
