@@ -13,6 +13,5 @@ public class TemperatureApp {
 
         System.out.println(temp.show());
         System.out.println(temp.showInFahrenheit());
-        //System.out.println(t.fC.celsiusToFahrenheit(34.0));
     }
 }

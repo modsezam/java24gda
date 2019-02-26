@@ -21,7 +21,6 @@ public class Temperature {
     private String hour;
     private FahrenheitConverter tFahrenheitConverter;
 
-    //konstruktor do
 
 
     public Temperature(FahrenheitConverter fahrenheitConverter, double temperature, String date, String hour) {
