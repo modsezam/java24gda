@@ -11,7 +11,6 @@ napis w postaci: {date} {hour} - {temperature} °C, np: 2018-10-01 10:45 - 13 °
 6. * Dodaj do klasy Temperature metodę showInFahrenheit() która zwróci taki sam napis jak wyżej tylko w skali
 Fahrenheit. Do konwersji temperatur użyj klasy FahrenheitConverter.
 
-
  */
 
 
