@@ -1,24 +1,45 @@
 package sda.test;
 
+import java.util.Scanner;
+
 public class MyPoint {
 
     public double a;
     public double b;
+    public double[] distance = new double [99];
+    public int pointNumber;
 
+    Scanner scanner = new Scanner(System.in);
 
-    public void setA(double a) {
-        this.a = a;
+    public int getPointNumber() {
+        return pointNumber;
     }
 
-    public void setB(double b) {
-        this.b = b;
+    private double calculateDistance() {
+        return Math.sqrt((this.a*this.a) + (this.b*this.b));
     }
 
-    public double calculateDistance() {
-        return (Math.pow(this.a, 2)) + (Math.pow(this.b, 2));
-
+    public double getDistance(int i) {
+        return distance[i];
     }
 
+    public void numberOfPoints(){
+        System.out.println("Give the number of points (1-100):");
+        pointNumber = scanner.nextInt();
+    }
 
+    public void handlingXY (){
+        if (pointNumber >= 1 && pointNumber <= 100){
+            for (int i = 0; i < pointNumber; i++){
+                System.out.println("Give the X coordinate of the point: " + ( i + 1 ) );
+                a = scanner.nextDouble();
+                System.out.println("Give the Y coordinate of the point: " + ( i + 1 ) );
+                b = scanner.nextDouble();
+                distance[i] = calculateDistance();
+            }
+        }
+        else
+            System.out.println("You gave the wrong number of points!");
+    }
 
 }
