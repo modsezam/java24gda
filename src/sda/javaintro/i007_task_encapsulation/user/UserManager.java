@@ -1,5 +1,7 @@
 package sda.javaintro.i007_task_encapsulation.user;
 
+import sda.javaintro.i007_task_encapsulation.item.ItemModel;
+
 public class UserManager {
 
     private UserModel user;
