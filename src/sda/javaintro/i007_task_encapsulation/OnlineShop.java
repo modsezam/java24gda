@@ -25,6 +25,7 @@ public class OnlineShop {
 //        System.out.println(user[0]);
 //        System.out.println(user[1]);
 
+        System.out.println("List of user:");
         for (int i = 0; i < user.length; i++){
             System.out.println(user[i]);
         }

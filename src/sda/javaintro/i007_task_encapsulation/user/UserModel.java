@@ -28,10 +28,9 @@ public class UserModel {
 
     @Override
     public String toString() {
-        return "UserModel{" +
+        return "- " +
                 "firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
-                ", age=" + age +
-                '}';
+                ", age=" + age;
     }
 }
