@@ -12,7 +12,7 @@ public class UserModel {
         this.age = age;
     }
 
-//    public UserModel (){}
+    public UserModel (){}
 
 //    public String getLastName() {
 //        return lastName;

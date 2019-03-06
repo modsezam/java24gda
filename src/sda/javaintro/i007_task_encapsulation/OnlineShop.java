@@ -1,14 +1,18 @@
 package sda.javaintro.i007_task_encapsulation;
 
+import sda.javaintro.i007_task_encapsulation.cart.CartManager;
+import sda.javaintro.i007_task_encapsulation.cart.CartModel;
 import sda.javaintro.i007_task_encapsulation.item.ItemManager;
+import sda.javaintro.i007_task_encapsulation.item.ItemModel;
+import sda.javaintro.i007_task_encapsulation.item.ItemUtil;
 import sda.javaintro.i007_task_encapsulation.user.UserManager;
 import sda.javaintro.i007_task_encapsulation.user.UserModel;
 
 public class OnlineShop {
     public static void main(String[] args) {
-        // TODO
-        UserManager userManager = new UserManager();
 
+        // User management
+        UserManager userManager = new UserManager();
         UserModel user[] = new UserModel[10];
 //        for (int i = 0; i < user.length; i++){
 //            user[i] = new UserModel();
@@ -22,15 +26,50 @@ public class OnlineShop {
         userManager.createUser("Łukasz", "Kowalski", 45);
         user[1] = userManager.getUser();
 
-//        System.out.println(user[0]);
-//        System.out.println(user[1]);
-
         System.out.println("List of user:");
-        for (int i = 0; i < user.length; i++){
-            System.out.println(user[i]);
+        for (int i = 0; i < user.length; i++) {
+            if (user[i] != null)
+                System.out.println(user[i]);
         }
 
+        // Item management
+        ItemManager itemManager = new ItemManager();
+        ItemModel item[] = new ItemModel[20];
+//        for (int i = 0; i < item.length; i++) {
+//            item[i] = new ItemModel();
+//        }
 
+        item[0] = itemManager.createShopItem("pralka", "pralka opis", 1399.99);
+        item[1] = itemManager.createShopItem("monitor", "monitor opis", 600.45);
+        item[2] = itemManager.createShopItem("waciki", "waciki opis", 9.30);
+        item[3] = itemManager.createShopItem("papier", "papier opis", 2.30);
+
+        //ItemUtil - truncate - cat string to maxLength char
+        ItemUtil itemUtil = new ItemUtil();
+
+        System.out.println("List of item (cut description to 10 char):");
+        for (int i = 0; i < item.length; i++) {
+            if (item[i] != null)
+                System.out.println("- item " + (i + 1) + " itemTitle= " + item[i].getTitle() +
+                        ", itemDescription= " + itemUtil.truncate(item[i].getDescription(), 10) +
+                        ", item price= " + item[i].getPrice() + " PLN");
+        }
+
+        // Add to cart
+        CartManager cartManager = new CartManager();
+        CartModel cart[] = new CartModel[20];
+
+        for (int i = 0; i < cart.length; i++) {
+            cart[i] = new CartModel();
+        }
+
+        cart[0] = cartManager.addItemToCart(1, 1);
+        cart[1] = cartManager.addItemToCart(2, 1);
+        cart[2] = cartManager.addItemToCart(2, 1);
+        cart[3] = cartManager.addItemToCart(3, 10);
+
+        double basketPrice = cartManager.calculateBasket(cart, item);
+        System.out.println("Total price of basket: " + basketPrice + " PLN");
 
     }
 }
