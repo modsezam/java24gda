@@ -2,6 +2,7 @@ package sda.javaintro.i007_task_encapsulation;
 
 import sda.javaintro.i007_task_encapsulation.cart.CartManager;
 import sda.javaintro.i007_task_encapsulation.cart.CartModel;
+import sda.javaintro.i007_task_encapsulation.cart.ShopCart;
 import sda.javaintro.i007_task_encapsulation.item.ItemManager;
 import sda.javaintro.i007_task_encapsulation.item.ItemModel;
 import sda.javaintro.i007_task_encapsulation.item.ItemUtil;
@@ -39,6 +40,7 @@ public class OnlineShop {
 //            item[i] = new ItemModel();
 //        }
 
+        System.out.println("\nAdd item:");
         item[0] = itemManager.createShopItem("pralka", "pralka opis", 1399.99);
         item[1] = itemManager.createShopItem("monitor", "monitor opis", 600.45);
         item[2] = itemManager.createShopItem("waciki", "waciki opis", 9.30);
@@ -47,7 +49,7 @@ public class OnlineShop {
         //ItemUtil - truncate - cat string to maxLength char
         ItemUtil itemUtil = new ItemUtil();
 
-        System.out.println("List of item (cut description to 10 char):");
+        System.out.println("\nList of item (cut description to 10 char):");
         for (int i = 0; i < item.length; i++) {
             if (item[i] != null)
                 System.out.println("- item " + (i + 1) + " itemTitle= " + item[i].getTitle() +
@@ -55,7 +57,41 @@ public class OnlineShop {
                         ", item price= " + item[i].getPrice() + " PLN");
         }
 
+
         // Add to cart
+
+
+        ShopCart shopCart = new ShopCart();
+
+        System.out.println("\nAdd item to basket:");
+        shopCart.addToBasket(1,2, item);
+        shopCart.addToBasket(1,2, item);
+        shopCart.addToBasket(2,2, item);
+        shopCart.addToBasket(2,3, item);
+        shopCart.addToBasket(3,3, item);
+        shopCart.addToBasket(3,3, item);
+        shopCart.addToBasket(4,3, item);
+        shopCart.addToBasket(4,3, item);
+        shopCart.addToBasket(5,3, item);
+        shopCart.addToBasket(4,3, item);
+        shopCart.addToBasket(7,3, item);
+        shopCart.addToBasket(8,3, item);
+        shopCart.addToBasket(10,3, item);
+        shopCart.addToBasket(20,3, item);
+        shopCart.addToBasket(21,3, item);
+
+
+        System.out.println("\nYour item in basket:");
+        shopCart.showItemInBasket(item);
+
+        System.out.println("\nBuy:");
+        shopCart.buy(item);
+
+        System.out.println("\nYour item in basket:");
+        shopCart.showItemInBasket(item);
+
+/*
+        // Add to cart (old solution)
         CartManager cartManager = new CartManager();
         CartModel cart[] = new CartModel[20];
 
@@ -70,6 +106,7 @@ public class OnlineShop {
 
         double basketPrice = cartManager.calculateBasket(cart, item);
         System.out.println("Total price of basket: " + basketPrice + " PLN");
+*/
 
     }
 }

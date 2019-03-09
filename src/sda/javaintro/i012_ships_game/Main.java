@@ -1,16 +1,17 @@
 package sda.javaintro.i012_ships_game;
 
-import sda.javaintro.i012_ships_game.board.BoardModel;
-import sda.javaintro.i012_ships_game.console.Console;
-
 
 public class Main {
 
     public static void main(String[] args) {
 
-        BoardModel boardModel = new BoardModel();
+        SourceCode game = new SourceCode();
+        game.newGame();
 
-        boardModel.initializationBoard(10);
+
+
+//        Board boardModel = new Board(10);
+//        boardModel.initializationBoard(10);
 
 
 /*

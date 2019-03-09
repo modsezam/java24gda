@@ -1,4 +1,4 @@
-package sda.javaintro.i012_ships_game.board;
+package sda.javaintro.i012_ships_game;
 
 public class ShipModel {
 
