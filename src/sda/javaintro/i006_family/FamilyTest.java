@@ -1,5 +1,19 @@
 package sda.javaintro.i006_family;
 
+/*
+#encapsulation
+(Task 1-2 is done!)
+1. Umieść klasy które utworzyłeś do tej pory w swoim projekcie w osobnych pakietach tak żeby rozgraniczyć
+poszczególne bloki / zagadnienia nauki programowania
+2. Dodaj do klas utworzonych w zadaniu na początku zajęć (drzewo genealogiczne) odpowiednie modyfikatory
+dostępu na poziomie pól, konstruktorów i metod.
+
+#strings
+(Task 4 is done!)
+4. Dodaj do klas reprezentujących osobę i rodzinę utworzonych w zadaniu na początku zajęć
+metody toString(), które w czytelny sposób wyświetlą informacje o obiekcie.
+ */
+
 public class FamilyTest {
 
 

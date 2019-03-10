@@ -1,7 +1,24 @@
 package sda.javaintro.i007_task_encapsulation;
 
-import sda.javaintro.i007_task_encapsulation.cart.CartManager;
-import sda.javaintro.i007_task_encapsulation.cart.CartModel;
+/*
+
+(The task 3-5 is done!)
+3. W repozytorium kodu, w pakiecie encapsulation znajduje się kolejny pakiet nazwany task, gdzie jest kilka klas,
+które należy uporządkować i stworzyć dla nich odpowiednie pakiety. To Twoje zadanie. Działaj wyłącznie w
+obrębie pakietu task.
+4. * W klasach, które właśnie zostały uporządkowane ktoś popełnił błędy i nie zadbał o prawidłową hermetyzację
+danych oraz modyfikatory dostępu. Przejrzyj klasy i postaraj się by kod był zgodny z tym co było powiedziane na
+zajęciach - przeprojektuj klasy by spełniały zasady hermetyzacji, a przy tym udostępniały do "świata
+zewnętrznego" tylko potrzebne API. Zadbaj o prawidłowe użycie danych, dodaj konstruktory gdzie trzeba.
+Utwórz przykłady użycia (tworzenie produktów i użytkowników) w klasie OnlineShop. Sprawdź, czy Twój kod jest
+odporny na błędy.
+5. * Utwórz klasę koszyka, która umożliwi robienie zakupów: użytkownik dodaje wybrane przedmioty w zadanej ilości
+do swojego koszyka, a następnie dokonuje zakupu. Wykonywane operacje powinny być wyświetlane na konsoli.
+Zadbaj o odpowiednią hermetyzację swojego API oraz właściwe modyfikatory dostępu.
+
+ */
+
+
 import sda.javaintro.i007_task_encapsulation.cart.ShopCart;
 import sda.javaintro.i007_task_encapsulation.item.ItemManager;
 import sda.javaintro.i007_task_encapsulation.item.ItemModel;
@@ -15,13 +32,8 @@ public class OnlineShop {
         // User management
         UserManager userManager = new UserManager();
         UserModel user[] = new UserModel[10];
-//        for (int i = 0; i < user.length; i++){
-//            user[i] = new UserModel();
-//        }
 
         userManager.createUser("Marcin", "Kobierowski", 34);
-//        UserModel marcin = userManager.getUser();
-//        System.out.println(marcin);
         user[0] = userManager.getUser();
 
         userManager.createUser("Łukasz", "Kowalski", 45);
@@ -36,9 +48,6 @@ public class OnlineShop {
         // Item management
         ItemManager itemManager = new ItemManager();
         ItemModel item[] = new ItemModel[20];
-//        for (int i = 0; i < item.length; i++) {
-//            item[i] = new ItemModel();
-//        }
 
         System.out.println("\nAdd item:");
         item[0] = itemManager.createShopItem("pralka", "pralka opis", 1399.99);
@@ -51,66 +60,34 @@ public class OnlineShop {
 
         System.out.println("\nList of item (cut description to 10 char):");
         for (int i = 0; i < item.length; i++) {
-            if (item[i] != null)
-                System.out.println("- item " + (i + 1) + " itemTitle= " + item[i].getTitle() +
-                        ", itemDescription= " + itemUtil.truncate(item[i].getDescription(), 10) +
-                        ", item price= " + item[i].getPrice() + " PLN");
+            if (item[i] != null) {
+                System.out.printf("- item %d itemTitle= %s, itemDescription= %s, item price= %.2f PLN%n",
+                        (i + 1), item[i].getTitle(), itemUtil.truncate(item[i].getDescription(), 10), item[i].getPrice());
+            }
         }
-
 
         // Add to cart
 
-
-
-/*
-        // Add to cart (old solution)
         ShopCart shopCart = new ShopCart();
 
-        System.out.println("\nAdd item to basket:");
-        shopCart.addToBasket(1,2, item);
-        shopCart.addToBasket(1,2, item);
-        shopCart.addToBasket(2,2, item);
-        shopCart.addToBasket(2,3, item);
-        shopCart.addToBasket(3,3, item);
-        shopCart.addToBasket(3,3, item);
-        shopCart.addToBasket(4,3, item);
-        shopCart.addToBasket(4,3, item);
-        shopCart.addToBasket(5,3, item);
-        shopCart.addToBasket(4,3, item);
-        shopCart.addToBasket(7,3, item);
-        shopCart.addToBasket(8,3, item);
-        shopCart.addToBasket(10,3, item);
-        shopCart.addToBasket(20,3, item);
-        shopCart.addToBasket(21,3, item);
+        System.out.println("\nAdd item do basket:");
+        shopCart.addToBasket(item[0], 2);
+        shopCart.addToBasket(item[1], 8);
+        shopCart.addToBasket(item[2], 3);
+        shopCart.addToBasket(item[3], 1);
+        shopCart.addToBasket(item[2], 6);
+        shopCart.addToBasket(item[2], 6);
+        shopCart.addToBasket(item[2], 6);
+        shopCart.addToBasket(item[2], 6);
+        shopCart.addToBasket(item[2], 6);
+        shopCart.addToBasket(item[2], 6);
+        shopCart.addToBasket(item[2], 6);
 
+        System.out.println("\nItem in basket:");
+        shopCart.showItemInBasket();
 
-        System.out.println("\nYour item in basket:");
-        shopCart.showItemInBasket(item);
-
-        System.out.println("\nBuy:");
-        shopCart.buy(item);
-
-        System.out.println("\nYour item in basket:");
-        shopCart.showItemInBasket(item);
-*/
-
-/*
-        // Add to cart (old solution)
-        CartManager cartManager = new CartManager();
-        CartModel cart[] = new CartModel[20];
-
-        for (int i = 0; i < cart.length; i++) {
-            cart[i] = new CartModel();
-        }
-
-        cart[0] = cartManager.addItemToCart(1, 1);
-        cart[1] = cartManager.addItemToCart(2, 1);
-        cart[2] = cartManager.addItemToCart(2, 1);
-        cart[3] = cartManager.addItemToCart(3, 10);
-
-        double basketPrice = cartManager.calculateBasket(cart, item);
-        System.out.println("Total price of basket: " + basketPrice + " PLN");
-*/
+        System.out.println("\nBuy all item from basket:");
+        shopCart.buy();
 
     }
 }
