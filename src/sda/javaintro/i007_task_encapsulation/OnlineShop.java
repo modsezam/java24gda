@@ -61,6 +61,9 @@ public class OnlineShop {
         // Add to cart
 
 
+
+/*
+        // Add to cart (old solution)
         ShopCart shopCart = new ShopCart();
 
         System.out.println("\nAdd item to basket:");
@@ -89,6 +92,7 @@ public class OnlineShop {
 
         System.out.println("\nYour item in basket:");
         shopCart.showItemInBasket(item);
+*/
 
 /*
         // Add to cart (old solution)

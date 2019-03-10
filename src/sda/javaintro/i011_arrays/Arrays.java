@@ -6,7 +6,7 @@ public class Arrays {
     public static void main(String[] args) {
 
         String[] array1;
-        array1 = new String[]{"test1", "test2", "test3"};
+        array1 = new String[]{"CollectionsTest", "test2", "test3"};
 
         int array2[] = new int[]{1, 3, 5};
 

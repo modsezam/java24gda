@@ -5,7 +5,7 @@ import sda.javaintro.i007_task_encapsulation.item.ItemModel;
 public class ShopCart {
 
     private int[][] basket = new int[10][2];
-
+/*
     public void addToBasket(int itemIndex, int itemQuantity, ItemModel itemModel[]) {
         for (int i = 0; i < basket.length; i++) {
             //checking if the itemIndex is not exceeded
@@ -75,5 +75,6 @@ public class ShopCart {
 
     }
 
+*/
 
 }
