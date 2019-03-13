@@ -18,6 +18,70 @@ public class Board {
         }
     }
 
+    public boolean drawShip(int positionX, int positionY, int direction, int shipSize){
+        //draw the ship to the right
+        if (direction == 1){
+            if (checkShipDrawError(positionX, positionY, 1, 0, shipSize) == true){
+                checkDirectionAndDraw(positionX, positionY, 1, 0, shipSize);
+            }
+            else return false;
+        }
+        //draw the ship to down
+        else if (direction == 2){
+            if (checkShipDrawError(positionX, positionY, 0, 1, shipSize) == true) {
+                checkDirectionAndDraw(positionX, positionY, 0, 1, shipSize);
+            }
+            else return false;
+        }
+        //draw the ship to left
+        else if (direction == 3){
+            if (checkShipDrawError(positionX, positionY, -1, 0, shipSize) == true) {
+                checkDirectionAndDraw(positionX, positionY, -1, 0, shipSize);
+            }
+            else return false;
+        }
+        //draw the ship to up
+        else if (direction == 4){
+            if (checkShipDrawError(positionX, positionY, 0, -1, shipSize) == true) {
+                checkDirectionAndDraw(positionX, positionY, 0, -1, shipSize);
+            }
+            else return false;
+        }
+        else return false;
+
+    return  true;
+
+    }
+
+    private void drawPoint(int positionX, int positionY){
+        bordTable [positionY][positionX] = Constants.SHIP_PIONT;
+    }
+
+    private boolean checkShipDrawError(int positionX, int positionY, int shiftX, int shiftY, int shipSize){
+        for (int i = 0; i < shipSize; i++){
+
+            if ((positionX + i * shiftX) >= Constants.BOARD_SIZE ){
+                System.out.println("There is conflict! Correct your indication.");
+                return false;
+            }
+            else if ((positionY + i * shiftY) >= Constants.BOARD_SIZE ){
+                System.out.println("There is conflict! Correct your indication.");
+                return false;
+            }
+            else if (bordTable [positionY + i * shiftY][positionX + i * shiftX] == Constants.SHIP_PIONT){
+                System.out.println("There is conflict! Correct your indication.");
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private void checkDirectionAndDraw(int positionX, int positionY, int shiftX, int shiftY, int shipSize){
+        for (int i = 0; i < shipSize; i++){
+            drawPoint(positionX + i * shiftX, positionY + i * shiftY);
+        }
+    }
+
     public void boardDraw() {
         bordDrawFirstLine();
         bordDrawMainsLine();
@@ -41,13 +105,9 @@ public class Board {
             if (a == 10)
                 System.out.print(a);
             for (int j = 0; j < Constants.BOARD_SIZE; j++) {
-                if (this.bordTable[i][j] == 0) {
-                    System.out.print("|" + Constants.SHIP_PIONT);
-                } else
-                    System.out.print("|" + Constants.EMPTY_PIONT);
+                System.out.print("|" + this.bordTable[i][j]);
             }
             System.out.println("|");
-            //System.out.println(a);
             a += 1;
         }
     }
