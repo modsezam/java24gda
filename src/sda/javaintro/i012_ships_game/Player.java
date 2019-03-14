@@ -5,6 +5,7 @@ public class Player {
 
     private String playerName;
     private int shipList[];
+    //private Board board = new Board();
 
     public void setShipList(int[] shipList) {
         this.shipList = shipList;

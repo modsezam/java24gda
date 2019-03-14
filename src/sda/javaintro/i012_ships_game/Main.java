@@ -9,10 +9,12 @@ public class Main {
 
         game.newGame();
 
-        if (game.drawAllShipOnBoard() == true){
+        if (game.getAndDrawAllShipOnBoard() == true){
 
             System.out.println("\nYou put all ships on the board!");
+            if (game.getAllShipOnBoardComputer() == true){
 
+            }
         }
 
 

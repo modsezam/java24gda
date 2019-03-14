@@ -1,5 +1,6 @@
 package sda.javaintro.i012_ships_game;
 
+import java.util.Random;
 import java.util.Scanner;
 
 public class Console {
@@ -9,12 +10,25 @@ public class Console {
 
     }
     Board board = new Board();
+    Random generator = new Random();
 
     private int gameMode;
 
-    public boolean parseShipPosition(Scanner scanner, int shipSize) {
-        System.out.println("\nEnter the position of the ship ( size " + shipSize + "):");
-        String parseText = scanner.nextLine();
+    public boolean parseAndDrawShipPosition(Scanner scanner, int shipSize, char playerTable) {
+
+        String parseText = "";
+
+        if (playerTable == 'p'){
+            System.out.println("\nEnter the position of the ship ( size " + shipSize + "):");
+            parseText = scanner.nextLine();
+        }
+
+        if (playerTable == 'c'){
+            parseText = getRandomParse();
+        }
+
+
+
         int textFirstIndex = parseText.indexOf(' ');
         int textLastIndex = parseText.lastIndexOf(' ');
         int positionX = 0;
@@ -60,17 +74,34 @@ public class Console {
 
 
         }
-
-        if (board.drawShip(positionX, positionY, direction, shipSize) == true){
-            board.boardDraw();
+        if (playerTable == 'p'){
+            if (board.drawShip(positionX, positionY, direction, shipSize, board.getBordTable()) == true){
+                board.boardDraw();
+            }
+            else return false;
         }
-        else return false;
+        if (playerTable == 'c'){
+            if (board.drawShip(positionX, positionY, direction, shipSize, board.getBordTableComputer()) == true){
+                //board.boardDraw();
+            }
+            else return false;
+        }
+
+
 
         return true;
     }
 
-    public void consoleBoarInitialization(){
-        board.boardInitialization();
+    public String getRandomParse(){
+        String randomParse = "a " + generator.nextInt(9) + " r";
+        System.out.println(randomParse);
+        return randomParse;
+    }
+
+
+    public void consoleBoardInitialization(){
+        board.boardInitialization(board.getBordTable());
+        board.boardInitialization(board.getBordTableComputer());
 
 
     }

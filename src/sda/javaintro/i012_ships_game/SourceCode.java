@@ -16,22 +16,44 @@ public class SourceCode {
 
     }
 
-    public boolean drawAllShipOnBoard() {
+    public boolean getAndDrawAllShipOnBoard() {
 
-        for (int i = 0; i < player[0].getShipLength(); i++){
-            while (drawOneShipOnBoard(player[0].getShipNumber(i)) == false){
-                drawOneShipOnBoard(player[0].getShipNumber(i));
+        boolean state = false;
+
+        for (int i = 0; i < player[0].getShipLength(); i++) {
+            do {
+                state = getAndDrawOneShipOnBoard(player[0].getShipNumber(i), 'p');
             }
+            while (state == false);
+
         }
         return true;
 
     }
 
+    public boolean getAllShipOnBoardComputer(){
+
+        boolean state = false;
+
+        for (int i = 0; i < player[1].getShipLength(); i++){
+//            while (getAndDrawOneShipOnBoard(player[1].getShipNumber(i), 'c') == false){
+//                getAndDrawOneShipOnBoard(player[1].getShipNumber(i), 'c');
+//            }
+            do {
+                state = getAndDrawOneShipOnBoard(player[1].getShipNumber(i), 'c');
+            }
+            while (state == false);
+
+        }
+
+        return true;
+    }
 
 
-    public boolean drawOneShipOnBoard(int shipSize) {
 
-        if (console.parseShipPosition(scanner, shipSize) == false){
+    public boolean getAndDrawOneShipOnBoard(int shipSize, char playerTable) {
+
+        if (console.parseAndDrawShipPosition(scanner, shipSize, playerTable) == false){
             System.out.println("Bad parse ship position!");
             return false;
         }
@@ -43,12 +65,13 @@ public class SourceCode {
     public void newGame() {
 
         console.printLogo();
-        console.consoleBoarInitialization();
+        console.consoleBoardInitialization();
         player = new Player[2];
         player[0] = new Player(console.getName(scanner));
         player[1] = new Player("computer");
 
-        player[0].setShipList(new int[]{5, 4, 3, 2, 1});
+        player[0].setShipList(new int[]{5, 4, 3 , 2});
+        player[1] = player[0];
 
         //int gameMode = console.getMode(scanner, player[0]);
 
