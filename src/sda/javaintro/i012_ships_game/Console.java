@@ -9,32 +9,28 @@ public class Console {
     public Console() {
 
     }
+
     Board board = new Board();
     Random generator = new Random();
 
-    private int gameMode;
-
-    public boolean parseAndDrawShipPosition(Scanner scanner, int shipSize, char playerTable) {
+    public boolean parseAndDrawShipCreatePosition(Scanner scanner, int shipSize, char playerTable) {
 
         String parseText = "";
 
-        if (playerTable == 'p'){
+        if (playerTable == 'p') {
             System.out.println("\nEnter the position of the ship ( size " + shipSize + "):");
             parseText = scanner.nextLine();
         }
 
-        if (playerTable == 'c'){
+        if (playerTable == 'c') {
             parseText = getRandomParse();
         }
-
-
 
         int textFirstIndex = parseText.indexOf(' ');
         int textLastIndex = parseText.lastIndexOf(' ');
         int positionX = 0;
         int positionY = 0;
         int direction = 0;
-
 
         if (parseText.length() >= 5 && parseText.length() <= 6) {
 
@@ -50,91 +46,121 @@ public class Console {
                         positionY = (int) parseText.charAt(2) - 49;
 
                         direction = parseDirection(parseText, 4);
-                        if (direction == 0){
+                        if (direction == 0) {
                             return false;
                         }
-
                     }
-
+                } else if (textLastIndex == 4) {
+                    if (parseText.charAt(2) == '1' && parseText.charAt(3) == '0') {
+                        positionY = 9;
+                        direction = parseDirection(parseText, 5);
+                        if (direction == 0) {
+                            return false;
+                        }
+                    }
                 } else {
                     return false;
                 }
-            } else if (textLastIndex == 4) {
-                if (parseText.charAt(2) == '1' && parseText.charAt(3) == '0') {
-                    positionY = 9;
-                    direction = parseDirection(parseText, 5);
-                    if (direction == 0){
-                        return false;
-                    }
-
-                }
-            } else {
-                return false;
             }
-
-
         }
-        if (playerTable == 'p'){
-            if (board.drawShip(positionX, positionY, direction, shipSize, board.getBordTable()) == true){
-                board.boardDraw();
-            }
-            else return false;
+        if (playerTable == 'p') {
+            if (board.drawShip(positionX, positionY, direction, shipSize, board.getBordTable()) == true) {
+                board.boardDraw(board.bordTable, 'v');
+            } else return false;
         }
-        if (playerTable == 'c'){
-            if (board.drawShip(positionX, positionY, direction, shipSize, board.getBordTableComputer()) == true){
-                //board.boardDraw();
-            }
-            else return false;
+        if (playerTable == 'c') {
+            if (board.drawShip(positionX, positionY, direction, shipSize, board.getBordTableComputer()) == true) {
+            } else return false;
         }
-
-
-
         return true;
     }
 
-    public String getRandomParse(){
-        String randomParse = "a " + generator.nextInt(9) + " r";
-        System.out.println(randomParse);
-        return randomParse;
+    public int parseAndShootOneShipPosition(Scanner scanner) {
+
+        String parseText = "";
+
+        System.out.println("\nEnter the the field witch you shoot (for example A 1):");
+        parseText = scanner.nextLine();
+
+        int textFirstIndex = parseText.indexOf(' ');
+        int positionX = 0;
+        int positionY = 0;
+
+        if (parseText.length() >= 3 && parseText.length() <= 4) {
+
+            if (textFirstIndex == 1) {
+
+                if (Character.toLowerCase(parseText.charAt(0)) >= 'a' && Character.toLowerCase(parseText.charAt(0)) <= 'j') {
+                    positionX = (int) Character.toLowerCase(parseText.charAt(0)) - 97;
+                } else return 0;
+
+
+                if (parseText.charAt(2) >= 49 && parseText.charAt(2) <= 58 && parseText.length() == 3) {
+                    positionY = (int) parseText.charAt(2) - 49;
+                } else if (parseText.length() == 4 && parseText.charAt(2) == 49 && parseText.charAt(3) == 48){
+                    positionY = 9;
+                } else return 0;
+
+            } else return 0;
+        } else return 0;
+        if (board.checkAndSetComputerField(positionX, positionY) == true){
+            board.boardDraw(board.getBordTableComputer(), Constants.COMPUTER_TABLE_MODE);
+            return 10;
+        } else {
+            //board draw - hide mode (change in Constants)
+            board.boardDraw(board.getBordTableComputer(), Constants.COMPUTER_TABLE_MODE);
+        }
+
+
+        return 1;
     }
 
+    public String getRandomParse() {
 
-    public void consoleBoardInitialization(){
+        // get random first field (a - j) (97 - 106)
+        char randomFirstField;
+        randomFirstField = (char) (generator.nextInt(9) + 97);
+
+        // get random second field (0 - 9)
+        int randomSecondField;
+        randomSecondField = generator.nextInt(9);
+
+        //get random third field (r, d, l, u)
+        int randomThirdFieldIndex = generator.nextInt(3);
+        char randomThirdField = ' ';
+
+        if (randomThirdFieldIndex == 0) randomThirdField = 'r';
+        if (randomThirdFieldIndex == 1) randomThirdField = 'd';
+        if (randomThirdFieldIndex == 2) randomThirdField = 'l';
+        if (randomThirdFieldIndex == 3) randomThirdField = 'u';
+
+
+        String randomParse = randomFirstField + " " + randomSecondField + " " + randomThirdField;
+        return randomParse;
+
+    }
+
+    public void consoleBoardInitialization() {
         board.boardInitialization(board.getBordTable());
         board.boardInitialization(board.getBordTableComputer());
-
-
     }
 
-    public void consoleBordDraw(){
-        board.boardDraw();
+    public void consoleBoardDrawPlayer() {
+        board.boardDraw(board.bordTable, 'v');
     }
+
+    public void consoleBoardDrawComputer() {
+        board.boardDraw(board.bordTableComputer, Constants.COMPUTER_TABLE_MODE);
+    }
+
 
     public void printLogo() {
         System.out.println(Constants.LOGO);
     }
 
-
     public String getName(Scanner scanner) {
-
         System.out.println("\nWhat is your name?");
         return scanner.nextLine();
-    }
-
-
-    public int getMode(Scanner scanner, Player player) {
-
-        System.out.println("Hi " + player.getPlayerName() + ", choose game mode: (1 - Computer shoot, 2 - You shoot)");
-        gameMode = scanner.nextInt();
-        scanner.nextLine();
-        if (gameMode == 1) {
-            return 1;
-        } else if (gameMode == 2) {
-            System.out.println("This game mode is not finished! Bye!");
-            return 2;
-        }
-        System.out.println("There is bad game mode indicated! Game mode set to default 1.");
-        return 1;
     }
 
     public int parseDirection(String string, int parseIndex) {
@@ -149,7 +175,5 @@ public class Console {
         }
         return 0;
     }
-
-
 
 }

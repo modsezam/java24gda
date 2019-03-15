@@ -6,7 +6,7 @@ public class SourceCode {
 
     private Player[] player;
     private String playerName;
-    private int gameMode;
+    private int[] shipList;
 
     Scanner scanner = new Scanner(System.in);
 
@@ -31,36 +31,63 @@ public class SourceCode {
 
     }
 
-    public boolean getAllShipOnBoardComputer(){
+
+    public boolean generateAllShipOnBoardComputer() {
 
         boolean state = false;
 
-        for (int i = 0; i < player[1].getShipLength(); i++){
-//            while (getAndDrawOneShipOnBoard(player[1].getShipNumber(i), 'c') == false){
-//                getAndDrawOneShipOnBoard(player[1].getShipNumber(i), 'c');
-//            }
+        for (int i = 0; i < player[1].getShipLength(); i++) {
             do {
                 state = getAndDrawOneShipOnBoard(player[1].getShipNumber(i), 'c');
             }
             while (state == false);
 
         }
-
+        console.consoleBoardDrawComputer();
         return true;
     }
 
+    public boolean shootAllComputerShips() {
 
 
-    public boolean getAndDrawOneShipOnBoard(int shipSize, char playerTable) {
-
-        if (console.parseAndDrawShipPosition(scanner, shipSize, playerTable) == false){
-            System.out.println("Bad parse ship position!");
+        while (player[0].getNumOffPoints() > 0 && player[1].getNumOffPoints() > 0){
+            shootOneComputerShips();
+        }
+        if (player[0].getNumOffPoints() == 0){
+            return true;
+        }
+        if (player[1].getNumOffPoints() == 0){
             return false;
         }
         return true;
     }
 
 
+    public void shootOneComputerShips() {
+        int state = console.parseAndShootOneShipPosition(scanner);
+        if (state == 0) {
+            System.out.println("Bad coordinate of field!");
+        }
+        if (state == 10) {
+            player[0].deleteOneNumOffPoints();
+        }
+        if (state == 11) {
+            player[0].deleteOneNumOffPoints();
+        }
+    }
+
+    public boolean getAndDrawOneShipOnBoard(int shipSize, char playerTable) {
+
+        if (console.parseAndDrawShipCreatePosition(scanner, shipSize, playerTable) == false) {
+            if (playerTable == 'p') System.out.println("Bad coordinate off ship position! Please reenter.");
+            return false;
+        }
+        return true;
+    }
+
+    public void setShipList (int[] shipList){
+        this.shipList = shipList;
+    }
 
     public void newGame() {
 
@@ -70,15 +97,18 @@ public class SourceCode {
         player[0] = new Player(console.getName(scanner));
         player[1] = new Player("computer");
 
-        player[0].setShipList(new int[]{5, 4, 3 , 2});
-        player[1] = player[0];
+        player[0].setShipList(shipList);
+        player[1].setShipList(shipList);
 
-        //int gameMode = console.getMode(scanner, player[0]);
+        player[1].setNumOffPoints(player[0].getNumOffPoints());
+
+        player[0].calculateNumberOffAllPoints();
+        player[1].calculateNumberOffAllPoints();
 
         System.out.println("\nInitialize empty ship border:");
-        console.consoleBordDraw();
-        System.out.println("You must set the ships on the board: (to put ship type for example \"E 4 r\")");
-        System.out.println("When \"E4\" is first field and \"r\" is direction (r - right, d - down)");
+        console.consoleBoardDrawPlayer();
+        System.out.println("You must set the ships on the board: (to put ship type for example \"A 1 r\")");
+        System.out.println("When \"A 1\" is first field and \"r\" is direction (r - right, d - down)");
 
     }
 

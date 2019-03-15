@@ -4,19 +4,20 @@ public class Constants {
     private Constants(){ }
 
     public static final int BOARD_SIZE = 10;
-    public static final int LIVES_INT = 17;
 
-    public static final char EMPTY_PIONT = ' ';
-    public static final char SHIP_PIONT = '#';
-    public static final char SHIP_IS_HIT_PIONT = 'X';
-    public static final char SHIP_MISS_PIONT = 'o';
+    // to hide - h
+    public static final char COMPUTER_TABLE_MODE = 'v';
+
+    public static final char EMPTY_POINT = ' ';
+    public static final char SHIP_POINT = '#';
+    public static final char SHIP_IS_HIT_POINT = 'X';
+    public static final char SHIP_MISS_POINT = 'o';
 
     public static final String LOGO =
-            "       .__    .__                                       \n" +
-            "  _____|  |__ |__|_____      _________    _____   ____  \n" +
-            " /  ___/  |  \\|  \\____ \\    / ___\\__  \\  /     \\_/ __ \\ \n" +
-            " \\___ \\|   Y  \\  |  |_> >  / /_/  > __ \\|  Y Y  \\  ___/ \n" +
-            "/____  >___|  /__|   __/   \\___  (____  /__|_|  /\\___  >\n" +
-            "     \\/     \\/   |__|     /_____/     \\/      \\/     \\/";
-
+            "       .__    .__         ___.           __    __  .__          \n" +
+            "  _____|  |__ |__|_____   \\_ |__ _____ _/  |__/  |_|  |   ____  \n" +
+            " /  ___/  |  \\|  \\____ \\   | __ \\\\__  \\\\   __\\   __\\  | _/ __ \\ \n" +
+            " \\___ \\|   Y  \\  |  |_> >  | \\_\\ \\/ __ \\|  |  |  | |  |_\\  ___/ \n" +
+            "/____  >___|  /__|   __/   |___  (____  /__|  |__| |____/\\___  >\n" +
+            "     \\/     \\/   |__|          \\/     \\/                     \\/ ";
 }
