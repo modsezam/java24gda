@@ -8,8 +8,8 @@ public class Main {
         SourceCode game = new SourceCode();
 
         //choose number od ships
-        //game.setShipList(new int[]{5, 4 , 3, 3, 2, 2, 1 });
-        game.setShipList(new int[]{5});
+        game.setShipList(new int[]{5, 4 , 3, 3, 2, 2, 1 });
+        //game.setShipList(new int[]{5});
 
         game.newGame();
 
