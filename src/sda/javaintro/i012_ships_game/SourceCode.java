@@ -25,10 +25,8 @@ public class SourceCode {
                 state = getAndDrawOneShipOnBoard(player[0].getShipNumber(i), 'p');
             }
             while (state == false);
-
         }
         return true;
-
     }
 
 
@@ -52,6 +50,9 @@ public class SourceCode {
 
         while (player[0].getNumOffPoints() > 0 && player[1].getNumOffPoints() > 0){
             shootOneComputerShips();
+            computerOneShotAlgorithm();
+            System.out.println("Number of field to shoot:");
+            System.out.println("YOU: " + player[0].getNumOffPoints() + ", COMPUTER: " + player[1].getNumOffPoints());
         }
         if (player[0].getNumOffPoints() == 0){
             return true;
@@ -59,22 +60,31 @@ public class SourceCode {
         if (player[1].getNumOffPoints() == 0){
             return false;
         }
+
+
         return true;
     }
 
 
     public void shootOneComputerShips() {
-        int state = console.parseAndShootOneShipPosition(scanner);
+        int state = console.parseAndShootOneShipPositionComputer(scanner);
         if (state == 0) {
             System.out.println("Bad coordinate of field!");
         }
         if (state == 10) {
             player[0].deleteOneNumOffPoints();
         }
-        if (state == 11) {
-            player[0].deleteOneNumOffPoints();
+    }
+
+
+    public void computerOneShotAlgorithm() {
+
+        if (console.computerOneShotAlgorithm() == true) {
+            player[1].deleteOneNumOffPoints();
         }
     }
+
+
 
     public boolean getAndDrawOneShipOnBoard(int shipSize, char playerTable) {
 
