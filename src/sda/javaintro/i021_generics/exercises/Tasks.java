@@ -28,7 +28,7 @@ public class Tasks {
         System.out.println("numbers = " + numbers);
 
         //#4
-        NumbersBox numbersBox = numbersToNumbersBox(numbers);
+//        NumbersBox numbersBox = numbersToNumbersBox(numbers);
 
        //numbersBox.isEmpty();
 
@@ -95,11 +95,11 @@ public class Tasks {
      * - pobierze ostatni element listy jako int
      * Zwróć obiekt klasy NumbersBox jako wynik tej metody.
      */
-    private static NumbersBox numbersToNumbersBox(List<Number> numbers) {
-        NumbersBox<Number> numbersBox = new NumbersBox<>();
-        //System.out.println(numbersBox.isEmpty());
-        return numbersBox;
-    }
+//    private static NumbersBox numbersToNumbersBox(List<Number> numbers) {
+//        //NumbersBox<Number> numbersBox = new NumbersBox<>();
+//        //System.out.println(numbersBox.isEmpty());
+//        //return numbersBox;
+//    }
 
     /**
      * 5. Zmień klasę NumbersBox - tak żeby przyjmowała różne typy liczbowe - np. Double

@@ -1,50 +1,44 @@
 package sda.javaintro.i012_ships_game;
 
 
-public class Player {
+class Player {
 
-    private String playerName;
-    private int shipList[];
-    //private Board board = new Board();
+    private int[] shipList;
     private int numOffPoints = 0;
 
-    public void setShipList(int[] shipList) {
+    void setShipList(int[] shipList) {
         this.shipList = shipList;
     }
 
-    public int getShipNumber(int shipNumber) {
+    int getShipNumber(int shipNumber) {
         return shipList[shipNumber];
     }
 
-    public void calculateNumberOffAllPoints(){
-        for (int i = 0; i < shipList.length; i++){
-            numOffPoints += shipList[i];
+    void calculateNumberOffAllPoints(){
+        for (int i1 : shipList) {
+            numOffPoints += i1;
         }
     }
 
-    public void deleteOneNumOffPoints(){
+    void deleteOneNumOffPoints(){
         numOffPoints -= 1;
     }
 
-    public int getNumOffPoints() {
+    int getNumOffPoints() {
         return numOffPoints;
     }
 
-    public void setNumOffPoints(int numOffPoints) {
+    void setNumOffPoints(int numOffPoints) {
         this.numOffPoints = numOffPoints;
     }
 
-    public int getShipLength() {
+    int getShipLength() {
 
         return shipList.length;
     }
 
-    public Player(String playerName) {
+    Player(String playerName) {
 
-        this.playerName = playerName;
     }
 
-    public String getPlayerName() {
-        return playerName;
-    }
 }

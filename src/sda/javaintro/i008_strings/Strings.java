@@ -11,12 +11,16 @@ znaki z początku i końca tekstu oraz zamieni wszystkie litery na małe.
 4. Dodaj do klas reprezentujących osobę i rodzinę utworzonych w zadaniu na początku zajęć
 metody toString(), które w czytelny sposób wyświetlą informacje o obiekcie.
 
-(Task 5 is done!)
+(Task 5,6 is done!)
 5. Napisz metodę, która jako argumenty będzie przyjmować dwie zmienne typu String i zwróci
 true jeżeli oba teksty zaczynają się od tego samego znaku.
 6. Napisz metodę, która jako argumenty będzie przyjmować dwie zmienne typu String i zwróci
 true jeżeli 3 ostatnie znaki w obu tekstach są takie same.
+
+(Task 7 is done! The solution is in class FamilyTest)
 7. * W ramach zadania nr 4 użyj StringBuildera do tworzenia wersji tekstowej obiektów.
+
+(Task 8 is done!)
 8. * Napisz metodę sprawdzającą, czy dany łańcuch zawiera co najmniej trzy razy słowo “nie”.
 
  */
@@ -51,29 +55,45 @@ public class Strings {
         System.out.println(compareTwoStrings("Ala", "Aga"));
         System.out.println(compareTwoStrings("Ala", "Ola"));
 
+        System.out.println("\nlog> Task 6:");
+        System.out.println(compareTwoStringsThreeLastChar("Marcin", "cin"));
+        System.out.println(compareTwoStringsThreeLastChar("Marcin", "nic"));
+
+        System.out.println("\nlog> Task 7:");
+        System.out.println(checkWorldNo("nienieni"));
     }
 
 
-    public static String simonSayStringBuilder(String addString) {
+    private static String simonSayStringBuilder(String addString) {
         StringBuilder string = new StringBuilder();
         string.append("Simon says: [").append(addString).append("]");
         return string.toString();
     }
 
-    public static String simonSayCon(String addString) {
+    private static String simonSayCon(String addString) {
         return "Simon says: {" + addString + "]";
     }
 
-    public static String trimStringAndLowerCase(String string) {
+    private static String trimStringAndLowerCase(String string) {
         return string.trim().toLowerCase();
     }
 
-    public static boolean compareTwoStrings(String string1, String string2) {
+    private static boolean compareTwoStrings(String string1, String string2) {
 
-        if (string1.charAt(0) == string2.charAt(0)) {
-            return true;
-        }
-        return false;
+        return string1.charAt(0) == string2.charAt(0);
+    }
+
+    private static Boolean compareTwoStringsThreeLastChar(String string1, String string2) {
+        String compare1 = string1.substring(string1.length() - 3);
+        String compare2 = string2.substring(string2.length() - 3);
+        return compare1.compareTo(compare2) == 0;
+    }
+
+    public static Boolean checkWorldNo(String string) {
+
+        int result = string.length();
+        int resultReplace = string.replaceAll("nie", "").length();
+        return (result - resultReplace) >= "nie".length() * 3;
     }
 
 

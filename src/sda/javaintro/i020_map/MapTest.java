@@ -1,7 +1,5 @@
 package sda.javaintro.i020_map;
 
-import sda.javaintro.i012_ships_game.SourceCode;
-
 import java.util.HashMap;
 import java.util.Map;
 

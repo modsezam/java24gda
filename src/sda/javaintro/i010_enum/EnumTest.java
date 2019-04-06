@@ -18,6 +18,11 @@ public class EnumTest {
         System.out.println(Currency.DOLAR.calculatePLN(45));
 
 
+    }
+
+    private static void getEnum (String text){
+
+       // if (Operation.)
 
     }
 }

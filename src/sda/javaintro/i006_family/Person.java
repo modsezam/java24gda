@@ -23,12 +23,20 @@ public class Person {
         return age;
     }
 
+//    @Override
+//    public String toString() {
+//        return "Person{" +
+//                "name='" + name + '\'' +
+//                ", surName='" + surName + '\'' +
+//                ", age=" + age +
+//                '}';
     @Override
     public String toString() {
-        return "Person{" +
+        StringBuilder stringBuilder = new StringBuilder("Person{" +
                 "name='" + name + '\'' +
                 ", surName='" + surName + '\'' +
                 ", age=" + age +
-                '}';
+                '}');
+        return stringBuilder.toString();
     }
 }

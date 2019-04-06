@@ -1,4 +1,4 @@
-package sda.test;
+package sda.test.mypoint;
 
 import java.util.Scanner;
 

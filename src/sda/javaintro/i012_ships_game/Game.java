@@ -2,71 +2,65 @@ package sda.javaintro.i012_ships_game;
 
 import java.util.Scanner;
 
-public class SourceCode {
+public class Game {
 
     private Player[] player;
-    private String playerName;
     private int[] shipList;
 
-    Scanner scanner = new Scanner(System.in);
+    private Scanner scanner = new Scanner(System.in);
 
-    Console console = new Console();
+    private Console console = new Console();
 
-    public SourceCode() {
+    Game() {
 
     }
 
-    public boolean getAndDrawAllShipOnBoard() {
+    boolean getAndDrawAllShipOnBoard() {
 
-        boolean state = false;
+        boolean state;
 
         for (int i = 0; i < player[0].getShipLength(); i++) {
             do {
                 state = getAndDrawOneShipOnBoard(player[0].getShipNumber(i), 'p');
             }
-            while (state == false);
+            while (!state);
         }
         return true;
     }
 
 
-    public boolean generateAllShipOnBoardComputer() {
+    boolean generateAllShipOnBoardComputer() {
 
-        boolean state = false;
+        boolean state;
 
         for (int i = 0; i < player[1].getShipLength(); i++) {
             do {
                 state = getAndDrawOneShipOnBoard(player[1].getShipNumber(i), 'c');
             }
-            while (state == false);
+            while (!state);
 
         }
         console.consoleBoardDrawComputer();
         return true;
     }
 
-    public boolean shootAllComputerShips() {
+    boolean shootAllComputerShips() {
 
 
         while (player[0].getNumOffPoints() > 0 && player[1].getNumOffPoints() > 0){
             shootOneComputerShips();
             computerOneShotAlgorithm();
-            System.out.println("Number of field to shoot:");
+            System.out.print("Number of field to shoot: ");
             System.out.println("YOU: " + player[0].getNumOffPoints() + ", COMPUTER: " + player[1].getNumOffPoints());
         }
         if (player[0].getNumOffPoints() == 0){
             return true;
         }
-        if (player[1].getNumOffPoints() == 0){
-            return false;
-        }
-
-
-        return true;
+        return player[1].getNumOffPoints() != 0;
     }
 
 
-    public void shootOneComputerShips() {
+    private void shootOneComputerShips() {
         int state = console.parseAndShootOneShipPositionComputer(scanner);
         if (state == 0) {
             System.out.println("Bad coordinate of field!");
@@ -77,29 +71,29 @@ public class SourceCode {
     }
 
 
-    public void computerOneShotAlgorithm() {
+    private void computerOneShotAlgorithm() {
 
-        if (console.computerOneShotAlgorithm() == true) {
+        if (console.computerOneShotAlgorithm()) {
             player[1].deleteOneNumOffPoints();
         }
     }
 
 
 
-    public boolean getAndDrawOneShipOnBoard(int shipSize, char playerTable) {
+    private boolean getAndDrawOneShipOnBoard(int shipSize, char playerTable) {
 
-        if (console.parseAndDrawShipCreatePosition(scanner, shipSize, playerTable) == false) {
+        if (!console.parseAndDrawShipCreatePosition(scanner, shipSize, playerTable)) {
             if (playerTable == 'p') System.out.println("Bad coordinate off ship position! Please reenter.");
             return false;
         }
         return true;
     }
 
-    public void setShipList (int[] shipList){
+    void setShipList(int[] shipList){
         this.shipList = shipList;
     }
 
-    public void newGame() {
+    void newGame() {
 
         console.printLogo();
         console.consoleBoardInitialization();

@@ -17,26 +17,27 @@ public enum Operation {
         return operations;
     }
 
+
     public double calculate(double a, double b) {
 
-        double c = 0;
+        double result = 0;
 
         if (this.operations == "+"){
-            c = a + b;
+            result = a + b;
         }
 
         if (this.operations == "-"){
-            c = a - b;
+            result = a - b;
         }
 
         if (this.operations == "*"){
-            c = a * b;
+            result = a * b;
         }
 
         if (this.operations == "/"){
-            c = a / b;
+            result = a / b;
         }
 
-        return c;
+        return result;
     }
 }

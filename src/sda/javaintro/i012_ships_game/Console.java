@@ -6,14 +6,14 @@ import java.util.Scanner;
 public class Console {
 
 
-    public Console() {
+    Console() {
 
     }
 
-    Board board = new Board();
-    Random generator = new Random();
+    private Board board = new Board();
+    private Random generator = new Random();
 
-    public void printLogo() {
+    void printLogo() {
         System.out.println(Constants.LOGO);
     }
 
@@ -22,20 +22,20 @@ public class Console {
         return scanner.nextLine();
     }
 
-    public void consoleBoardInitialization() {
-        board.boardInitialization(board.getBordTable());
+    void consoleBoardInitialization() {
+        board.boardInitialization(board.getBordTablePlayer());
         board.boardInitialization(board.getBordTableComputer());
     }
 
-    public void consoleBoardDrawPlayer() {
-        board.boardDraw(board.bordTable, 'v');
+    void consoleBoardDrawPlayer() {
+        board.boardDraw(board.bordTablePlayer, Constants.PLAYER_TABLE_MODE);
     }
 
-    public void consoleBoardDrawComputer() {
+    void consoleBoardDrawComputer() {
         board.boardDraw(board.bordTableComputer, Constants.COMPUTER_TABLE_MODE);
     }
 
-    public boolean parseAndDrawShipCreatePosition(Scanner scanner, int shipSize, char playerTable) {
+    boolean parseAndDrawShipCreatePosition(Scanner scanner, int shipSize, char playerTable) {
 
         String parseText = "";
 
@@ -72,7 +72,7 @@ public class Console {
                             return false;
                         }
                     }
-                } else if (textLastIndex == 4) {
+                } else {
                     if (parseText.charAt(2) == '1' && parseText.charAt(3) == '0') {
                         positionY = 9;
                         direction = parseDirection(parseText, 5);
@@ -80,24 +80,21 @@ public class Console {
                             return false;
                         }
                     }
-                } else {
-                    return false;
                 }
             }
         }
         if (playerTable == 'p') {
-            if (board.drawShip(positionX, positionY, direction, shipSize, board.getBordTable()) == true) {
-                board.boardDraw(board.bordTable, 'v');
+            if (board.drawShip(positionX, positionY, direction, shipSize, board.getBordTablePlayer())) {
+                board.boardDraw(board.bordTablePlayer, 'v');
             } else return false;
         }
         if (playerTable == 'c') {
-            if (board.drawShip(positionX, positionY, direction, shipSize, board.getBordTableComputer()) == true) {
-            } else return false;
+            return board.drawShip(positionX, positionY, direction, shipSize, board.getBordTableComputer());
         }
         return true;
     }
 
-    public int parseAndShootOneShipPositionComputer(Scanner scanner) {
+    int parseAndShootOneShipPositionComputer(Scanner scanner) {
 
         String parseText;
 
@@ -106,8 +103,8 @@ public class Console {
 
 
         int textFirstIndex = parseText.indexOf(' ');
-        int positionX = 0;
-        int positionY = 0;
+        int positionX;
+        int positionY;
 
         if (parseText.length() >= 3 && parseText.length() <= 4) {
 
@@ -125,7 +122,7 @@ public class Console {
             } else return 0;
         } else return 0;
 
-        if (board.checkAndSetComputerField(positionX, positionY) == true) {
+        if (board.checkAndSetComputerField(positionX, positionY)) {
             board.boardDraw(board.getBordTableComputer(), Constants.COMPUTER_TABLE_MODE);
             return 10;
         } else {
@@ -137,7 +134,7 @@ public class Console {
     }
 
 
-    public String getRandomParse(boolean addDirection) {
+    private String getRandomParse(boolean addDirection) {
 
         // get random first field (a - j) (97 - 106)
         char randomFirstField;
@@ -146,7 +143,7 @@ public class Console {
         // get random second field (0 - 9)
         int randomSecondField;
         randomSecondField = generator.nextInt(9) + 1;
-        if (addDirection == true) {
+        if (addDirection) {
             //get random third field (r, d, l, u)
             int randomThirdFieldIndex = generator.nextInt(3);
             char randomThirdField = ' ';
@@ -156,15 +153,13 @@ public class Console {
             if (randomThirdFieldIndex == 2) randomThirdField = 'l';
             if (randomThirdFieldIndex == 3) randomThirdField = 'u';
 
-            String randomParse = randomFirstField + " " + randomSecondField + " " + randomThirdField;
-            return randomParse;
+            return randomFirstField + " " + randomSecondField + " " + randomThirdField;
         } else {
-            String randomParse = randomFirstField + " " + randomSecondField;
-            return randomParse;
+            return randomFirstField + " " + randomSecondField;
         }
     }
 
-    public int parseDirection(String string, int parseIndex) {
+    private int parseDirection(String string, int parseIndex) {
         if (string.toLowerCase().charAt(parseIndex) == 'r') {
             return 1;
         } else if (string.toLowerCase().charAt(parseIndex) == 'd') {
@@ -177,11 +172,11 @@ public class Console {
         return 0;
     }
 
-    public boolean parseAndShootOneShipPositionPlayer(String parseText) {
+    private boolean parseAndShootOneShipPositionPlayer(String parseText) {
 
         int textFirstIndex = parseText.indexOf(' ');
-        int positionX = 0;
-        int positionY = 0;
+        int positionX;
+        int positionY;
 
         if (parseText.length() >= 3 && parseText.length() <= 4) {
 
@@ -199,21 +194,17 @@ public class Console {
             } else return false;
         } else return false;
 
-        System.out.println("\nComputer shot: " + parseText.toUpperCase());
+        System.out.print("\nComputer shot: (" + parseText.toUpperCase() + "). ");
 
-        if (board.checkAndSetPlayerField(positionX, positionY) == true) {
-            //board.boardDraw(board.getBordTableComputer(), Constants.COMPUTER_TABLE_MODE);
-            return true;
-        }
+        return board.checkAndSetPlayerField(positionX, positionY);
 
-        return false;
     }
 
-    public boolean computerOneShotAlgorithm() {
-        String randomParse = " ";
+    boolean computerOneShotAlgorithm() {
+        String randomParse;
         int[] coordinates;
-        int x = 0;
-        int y = 0;
+        int x;
+        int y;
 
         coordinates = board.algorithmToFindNextFieldToShot();
 
@@ -222,21 +213,21 @@ public class Console {
                 x = generator.nextInt(Constants.BOARD_SIZE - 1);
                 y = generator.nextInt(Constants.BOARD_SIZE - 1);
                 randomParse = (char)(x + 97) + " " + (y + 1);
-                System.out.println("log> randomParse RANDOM: " + randomParse);
-            } while (board.checkPlayerHitMissPoint(x, y) == false);
+                //System.out.println("log> randomParse RANDOM: " + randomParse);
+            } while (!board.checkPlayerHitMissPoint(x, y));
         }
         else {
             randomParse = (char)(coordinates[0] + 97) + " " + (coordinates[1] + 1);
-            System.out.println("log> randomParse: " + randomParse);
+            //System.out.println("log> randomParse: " + randomParse);
         }
 
 
-        if (parseAndShootOneShipPositionPlayer(randomParse) == true) {
-            board.boardDraw(board.getBordTable(), 'v');
+        if (parseAndShootOneShipPositionPlayer(randomParse)) {
+            board.boardDraw(board.getBordTablePlayer(), 'v');
 
             return true;
         }
-        board.boardDraw(board.getBordTable(), 'v');
+        board.boardDraw(board.getBordTablePlayer(), 'v');
 
         return false;
     }

@@ -9,9 +9,10 @@ poszczególne bloki / zagadnienia nauki programowania
 dostępu na poziomie pól, konstruktorów i metod.
 
 #strings
-(Task 4 is done!)
+(Task 4,7 is done!)
 4. Dodaj do klas reprezentujących osobę i rodzinę utworzonych w zadaniu na początku zajęć
 metody toString(), które w czytelny sposób wyświetlą informacje o obiekcie.
+7. * W ramach zadania nr 4 użyj StringBuildera do tworzenia wersji tekstowej obiektów.
  */
 
 public class FamilyTest {
