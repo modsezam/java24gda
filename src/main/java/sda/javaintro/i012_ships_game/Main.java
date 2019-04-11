@@ -1,7 +1,5 @@
 package sda.javaintro.i012_ships_game;
 
-import sda.javaintro.i012_ships_game.Constants;
-
 public class Main {
 
     public static void main(String[] args) {

@@ -19,12 +19,12 @@ Zadbaj o odpowiednią hermetyzację swojego API oraz właściwe modyfikatory dos
  */
 
 
+import sda.javaintro.i007_task_encapsulation.user.UserModel;
 import sda.javaintro.i007_task_encapsulation.cart.ShopCart;
 import sda.javaintro.i007_task_encapsulation.item.ItemManager;
 import sda.javaintro.i007_task_encapsulation.item.ItemModel;
 import sda.javaintro.i007_task_encapsulation.item.ItemUtil;
 import sda.javaintro.i007_task_encapsulation.user.UserManager;
-import sda.javaintro.i007_task_encapsulation.user.UserModel;
 
 public class OnlineShop {
     public static void main(String[] args) {

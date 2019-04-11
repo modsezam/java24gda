@@ -2,7 +2,7 @@ package sda.javaintro.i009_loops;
 
 /*
 (task 6 is done)
-6. Zmień metodę pl.sda.loops.ForLoop.sumNumbersFromUser() tak by przyjmowała liczby typu float. W podsumowaniu oprócz sumy
+6. Zmień metodę pl.main.sda.loops.ForLoop.sumNumbersFromUser() tak by przyjmowała liczby typu float. W podsumowaniu oprócz sumy
         wypisz także średnią arytmetyczną podanych liczb.
 
  */

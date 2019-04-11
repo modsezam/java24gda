@@ -18,7 +18,7 @@ content of i007_task_encapsulation (in Polish):
     czy podany kod zawiera się w tym przedziale.
     5. Napisz program, który dla podanej liczby wypisze na ekran konsoli dzień tygodnia (dla 1 - "poniedziałek", 2 - "wtorek"
     itp). Dodatkowo wyświetl ile dni zostało do weekendu, dla poniedziałku - 5 dni, wtorku - 4 itp.
->   6. * Zobacz w jaki sposób można pobrać dane od użytkownika (z konsoli) analizując klasę: pl.sda.javaintro.i002_statements.ScannerApp.
+>   6. * Zobacz w jaki sposób można pobrać dane od użytkownika (z konsoli) analizując klasę: pl.main.sda.java.sda.javaintro.i002_statements.ScannerApp.
     Spróbuj dodać wczytywanie liczb z konsoli do każdego z zadań powyżej.
 
 */

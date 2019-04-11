@@ -1,4 +1,4 @@
-package spoj;/*
+package sda.spoj;/*
 https://pl.spoj.com/problems/PRIME_T/
 
 PRIME_T - Liczby Pierwsze
@@ -24,12 +24,14 @@ NIE
  */
 
 //import java.io.IOException;
+
 import java.util.Scanner;
 import java.lang.*;
 
 public class PrimeTApp {
-//throws java.lang.Exception
+
     public static void main(String[] args) throws java.lang.Exception {
+
         Scanner scanner = new Scanner(System.in);
 
         int numberOfPrime = scanner.nextInt();
@@ -44,26 +46,23 @@ public class PrimeTApp {
 
             primeList[i] = isPrime(number);
 
-        }for (int i = 0; i < numberOfPrime; i++){
+        }
 
-            if (primeList[i] == false)
+        for (int i = 0; i < numberOfPrime; i++){
+
+            if (!primeList[i])
                 System.out.println("NIE");
             else
                 System.out.println("TAK");
         }
 
-
-
-
-
-
     }
 
-    public static boolean isPrime(int number){
+    private static boolean isPrime(int number){
         if (number <=1 )
             return  false;
         else{
-            for (int i = 2; i*i <= number; i++){
+            for (int i = 2; i <= (number/2); i++){
                 if (number %  i == 0){
                     return  false;
                 }
